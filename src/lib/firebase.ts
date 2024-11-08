@@ -3,7 +3,7 @@ import { getStorage } from 'firebase/storage';
 
 // Firebaseの設定をここに貼り付け
 const firebaseConfig = {
-  apiKey: 'AIzaSyDP_1FhqLtRULK2Lz4tDyit_uICeFAbb38',
+  apiKey: process.env.NEXT_PUBLIC_API_KEY,
   authDomain: 'praisewap.firebaseapp.com',
   projectId: 'praisewap',
   storageBucket: 'praisewap.firebasestorage.app',
