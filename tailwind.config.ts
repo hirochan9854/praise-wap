@@ -1,6 +1,4 @@
-import type { Config } from 'tailwindcss';
-
-const config: Config = {
+const config = {
   content: [
     './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
     './src/components/**/*.{js,ts,jsx,tsx,mdx}',
@@ -41,7 +39,7 @@ const config: Config = {
     },
   },
   plugins: [
-    function ({ addUtilities }) {
+    function ({ addUtilities }: { addUtilities: (utilities: Record<string, Record<string, string>>) => void }) {
       const newUtilities = {
         '.vertical': {
           writingMode: 'vertical-rl',

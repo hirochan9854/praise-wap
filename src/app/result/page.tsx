@@ -1,5 +1,6 @@
 'use client';
 
+import { getStorage, ref, deleteObject } from 'firebase/storage';
 import Image from 'next/image';
 import { useSearchParams } from 'next/navigation';
 import QRCode from 'react-qr-code';
@@ -11,6 +12,15 @@ const Result = () => {
   if (!imageUrl) {
     return <p>画像がありません</p>;
   }
+  const desertRef = ref(getStorage(), imageUrl);
+
+  const deleateImage = () => {
+    deleteObject(desertRef)
+      .then(() => {})
+      .catch((error) => {
+        console.error('Error deleting file:', error);
+      });
+  };
 
   return (
     <div className="mx-auto flex w-full justify-center gap-40 pt-20">
@@ -22,7 +32,13 @@ const Result = () => {
       <div className="mt-5 flex flex-col justify-between">
         <h2 className=" text-center text-3xl">スマホに保存</h2>
         <QRCode className="" value={imageUrl} />
-        <button className="mx-auto  block w-56 rounded p-4 shadow-box disabled:cursor-not-allowed disabled:opacity-50">
+        <button
+          className="mx-auto  block w-56 rounded p-4 shadow-box disabled:cursor-not-allowed disabled:opacity-50"
+          onClick={() => {
+            deleateImage();
+            window.location.href = '/';
+          }}
+        >
           終了
         </button>
       </div>

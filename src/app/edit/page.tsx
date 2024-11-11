@@ -84,7 +84,7 @@ export default function Home() {
   };
 
   return (
-    <div className="mx-auto flex w-full justify-center gap-40 pt-20">
+    <div className="mx-auto flex w-full justify-center gap-40 py-20">
       <div className="w-[622px]">
         <h2 className="text-3xl">セリフを編集</h2>
         <div className="mt-20 font-ZenKakuGothic">
