@@ -3,18 +3,20 @@
 import { getStorage, ref, deleteObject } from 'firebase/storage';
 import Image from 'next/image';
 import { useSearchParams } from 'next/navigation';
+import { Suspense } from 'react';
 import QRCode from 'react-qr-code';
 
-const Result = () => {
+const ResultContent = () => {
   const searchParams = useSearchParams();
   const imageUrl = searchParams.get('imageUrl');
 
   if (!imageUrl) {
     return <p>画像がありません</p>;
   }
+
   const desertRef = ref(getStorage(), imageUrl);
 
-  const deleateImage = () => {
+  const deleteImage = () => {
     deleteObject(desertRef)
       .then(() => {})
       .catch((error) => {
@@ -30,12 +32,12 @@ const Result = () => {
         </div>
       </div>
       <div className="mt-5 flex flex-col justify-between">
-        <h2 className=" text-center text-3xl">スマホに保存</h2>
-        <QRCode className="" value={imageUrl} />
+        <h2 className="text-center text-3xl">スマホに保存</h2>
+        <QRCode value={imageUrl} />
         <button
-          className="mx-auto  block w-56 rounded p-4 shadow-box disabled:cursor-not-allowed disabled:opacity-50"
+          className="mx-auto block w-56 rounded p-4 shadow-box disabled:cursor-not-allowed disabled:opacity-50"
           onClick={() => {
-            deleateImage();
+            deleteImage();
             window.location.href = '/';
           }}
         >
@@ -43,6 +45,14 @@ const Result = () => {
         </button>
       </div>
     </div>
+  );
+};
+
+const Result = () => {
+  return (
+    <Suspense fallback={<p>Loading...</p>}>
+      <ResultContent />
+    </Suspense>
   );
 };
 
