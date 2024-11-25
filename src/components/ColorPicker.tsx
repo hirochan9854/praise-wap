@@ -12,14 +12,14 @@ export type ColorPickerProps = {
 
 export const ColorPicker: React.FC<ColorPickerProps> = ({ changeColor, toggle }) => {
   return (
-    <div className="shadow-box  z-10 -ml-5 -mt-5 flex flex-col gap-3 rounded-xl p-5">
+    <div className="z-10  -ml-5 -mt-5 flex flex-col gap-3 rounded-xl p-5 shadow-box">
       {colors.map((row, rowIndex) => {
         return (
           <div className="flex gap-3" key={rowIndex}>
             {row.map((color, colorIndex) => {
               return (
                 <button
-                  className="h-69px w-69px shadow-box  rounded-full"
+                  className="h-69px w-69px rounded-full  shadow-box"
                   key={colorIndex}
                   onClick={() => {
                     changeColor(color);
