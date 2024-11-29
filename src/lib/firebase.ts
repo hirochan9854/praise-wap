@@ -1,7 +1,6 @@
 import { initializeApp, getApps, getApp } from 'firebase/app';
 import { getStorage } from 'firebase/storage';
 
-// Firebaseの設定をここに貼り付け
 const firebaseConfig = {
   apiKey: process.env.NEXT_PUBLIC_API_KEY,
   authDomain: 'praisewap.firebaseapp.com',
@@ -12,7 +11,6 @@ const firebaseConfig = {
   measurementId: 'G-3M62173PWS',
 };
 
-// Firebaseの初期化
 const app = !getApps().length ? initializeApp(firebaseConfig) : getApp();
 const storage = getStorage(app);
 

@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from 'react';
 
-function Timer() {
-  const [time, setTime] = useState(90);
+export type TimerProps = {
+  setIsTimeUp: (value: boolean) => void;
+};
+export const Timer: React.FC<TimerProps> = ({ setIsTimeUp }) => {
+  const [time, setTime] = useState(9000);
 
   useEffect(() => {
     if (time > 0) {
@@ -9,9 +12,11 @@ function Timer() {
         setTime((prevTime) => prevTime - 1);
       }, 1000);
       return () => clearInterval(timerId);
+    } else {
+      setIsTimeUp(true);
     }
-    return () => {};
-  }, [time]);
+    return;
+  }, [time, setIsTimeUp]);
 
   return (
     <div className="text-center">
@@ -19,6 +24,4 @@ function Timer() {
       <p className="-mt-4 text-[64px]">{`${time < 10 ? `0${time}` : time}`}s</p>
     </div>
   );
-}
-
-export default Timer;
+};

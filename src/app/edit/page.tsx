@@ -1,8 +1,7 @@
-// Home.tsx
 'use client';
 
 import { getDownloadURL, ref } from 'firebase/storage';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { useEffect, useRef, useState } from 'react';
 
 import { ColorPicker } from '@/components/ColorPicker';
@@ -12,6 +11,7 @@ import { storage } from '@/lib/firebase';
 import { generateImage, saveImageToFirebase } from './imageUtils';
 
 export default function Home() {
+  const searchParams = useSearchParams();
   const [isClient, setIsClient] = useState(false);
   const router = useRouter();
 
@@ -39,7 +39,7 @@ export default function Home() {
   const [fontFamily, setFontFamily] = useState('RocknRollOne');
   const changeFontFamily = (value: string) => setFontFamily(value);
 
-  const [text, setText] = useState('あなたの優しさは本当に\n人を元気にしてくれるよね。');
+  const [text, setText] = useState(searchParams ? searchParams.get('text') || '' : '');
   const changeText = (e: React.ChangeEvent<HTMLTextAreaElement>) => setText(e.target.value);
 
   const nodeRef = useRef<HTMLDivElement>(null);

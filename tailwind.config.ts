@@ -1,4 +1,6 @@
-const config = {
+import { Config } from 'tailwindcss';
+
+const config: Config = {
   content: [
     './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
     './src/components/**/*.{js,ts,jsx,tsx,mdx}',
@@ -17,7 +19,7 @@ const config = {
     },
     extend: {
       writingMode: {
-        vertical: 'vertical-rl', // 縦書き
+        vertical: 'vertical-rl',
       },
       colors: {
         gray: '#E1E4E7',
@@ -35,6 +37,29 @@ const config = {
       height: {
         '69px': '69px',
         '621px': '621px',
+      },
+      animation: {
+        'scale-in-bottom': 'scale-in-bottom 0.3s cubic-bezier(0.250, 0.460, 0.450, 0.940) forwards',
+      },
+      keyframes: {
+        'scale-in-bottom': {
+          '0%': {
+            transform: 'scale(0)',
+            'transform-origin': '50% 100%',
+            opacity: '0',
+          },
+          '100%': {
+            transform: 'scale(1)',
+            'transform-origin': '50% 100%',
+            opacity: '1',
+          },
+        },
+      },
+      transitionProperty: {
+        opacity: 'opacity',
+      },
+      transitionDuration: {
+        '300': '300ms',
       },
     },
   },

@@ -1,46 +1,46 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+
+import { Word } from './Word';
 
 export type WordlistProps = {
   second: boolean;
   name: string;
+  response: {
+    text: string;
+    score: number;
+    magnitude: number;
+  };
 };
 
-export const Wordlist: React.FC<WordlistProps> = ({ second, name }) => {
-  const [score, setScore] = useState(0);
-  const [wordList, setWordList] = useState<string[]>([
-    'あなたの優しさは本当に人を元気にしてくれるよね。',
-    'あなたの優しさは本当に人を元気にしてくれるよね。',
-    'あなたの優しさは本当に人を元気にしてくれるよね。',
-    'あなたの優しさは本当に人を元気にしてくれるよね。',
-    'あなたの優しさは本当に人を元気にしてくれるよね。',
-    'あなたの優しさは本当に人を元気にしてくれるよね。',
-  ]);
+export const Wordlist: React.FC<WordlistProps> = ({ second, name, response }) => {
+  const [score, setScore] = useState<number>(0);
+  const [wordList] = useState<string[]>([]);
+
+  useEffect(() => {
+    if (response.text) {
+      for (let i = 0; i < response.score; i++) {
+        setTimeout(() => {
+          setScore((prevScore) => prevScore + 1);
+        }, 1000);
+      }
+
+      wordList.push(response.text);
+    }
+  }, [response.text, response.score, wordList]);
 
   return (
     <div className="mt-6 text-center">
       <p className="text-2xl">{name}</p>
       <p className="mt-14">score</p>
       <p className="mx-auto mb-20  w-64 text-[64px]">{score}</p>
-      <div className="h-[500px] overflow-scroll">
-        {wordList.map((serif, index) => {
-          return <div key={index}>{word(serif, second)}</div>;
+      <div className="flex h-[500px] flex-col-reverse justify-end overflow-hidden ">
+        <Word second={second} serif={'語尾に「です」か「ます」をつけてください'} />
+        {wordList.map((serif, key) => {
+          return <Word key={key} second={second} serif={serif} />;
         })}
       </div>
-    </div>
-  );
-};
-
-const word = (serif: string, second: boolean) => {
-  return (
-    <div>
-      <p
-        className={`relative mb-14 w-96  rounded-3xl bg-[#FFF08D]  px-[30px] py-3 text-left
-        before:absolute  before:-bottom-6  before:block before:h-7 before:w-12  before:bg-[url('/deco-blowing.svg')] before:bg-cover ${second ? 'before:right-2 before:-scale-x-100' : 'before:left-2'}`}
-      >
-        {serif}
-      </p>
     </div>
   );
 };
