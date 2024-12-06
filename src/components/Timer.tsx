@@ -4,7 +4,7 @@ export type TimerProps = {
   setIsTimeUp: (value: boolean) => void;
 };
 export const Timer: React.FC<TimerProps> = ({ setIsTimeUp }) => {
-  const [time, setTime] = useState(9000);
+  const [time, setTime] = useState(90);
 
   useEffect(() => {
     if (time > 0) {
