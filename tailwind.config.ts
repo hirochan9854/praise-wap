@@ -40,6 +40,7 @@ const config: Config = {
       },
       animation: {
         'scale-in-bottom': 'scale-in-bottom 0.3s cubic-bezier(0.250, 0.460, 0.450, 0.940) forwards',
+        'swirl-in-bck': 'swirl-in-bck 0.6s ease   both',
       },
       keyframes: {
         'scale-in-bottom': {
@@ -51,6 +52,16 @@ const config: Config = {
           '100%': {
             transform: 'scale(1)',
             'transform-origin': '50% 100%',
+            opacity: '1',
+          },
+        },
+        'swirl-in-bck': {
+          '0%': {
+            transform: 'rotate(540deg) scale(5)',
+            opacity: '0',
+          },
+          to: {
+            transform: 'rotate(0) scale(1)',
             opacity: '1',
           },
         },
