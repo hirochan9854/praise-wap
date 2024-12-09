@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useCallback } from 'react';
 
-import { useSentimentAnalyzer } from '@/utils/hooks/useSentimentAnalyzer';
+import { useSentimentAnalyzer } from '@/hooks/useSentimentAnalyzer';
 
 interface SentimentAnalyzerProps {
   sentence: string;
