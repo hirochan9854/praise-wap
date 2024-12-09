@@ -12,26 +12,29 @@ export type ColorPickerProps = {
 
 export const ColorPicker: React.FC<ColorPickerProps> = ({ changeColor, toggle }) => {
   return (
-    <div className="z-10  -ml-5 -mt-5 flex flex-col gap-3 rounded-xl p-5 shadow-box">
-      {colors.map((row, rowIndex) => {
-        return (
-          <div className="flex gap-3" key={rowIndex}>
-            {row.map((color, colorIndex) => {
-              return (
-                <button
-                  className="h-69px w-69px rounded-full  shadow-box"
-                  key={colorIndex}
-                  onClick={() => {
-                    changeColor(color);
-                    toggle();
-                  }}
-                  style={{ backgroundColor: color }}
-                ></button>
-              );
-            })}
-          </div>
-        );
-      })}
+    <div>
+      <div className="absolute z-10  -ml-5 -mt-5 flex flex-col gap-3 rounded-xl bg-white  p-5 shadow-box">
+        {colors.map((row, rowIndex) => {
+          return (
+            <div className="flex gap-3" key={rowIndex}>
+              {row.map((color, colorIndex) => {
+                return (
+                  <button
+                    className="h-69px w-69px rounded-full  shadow-box"
+                    key={colorIndex}
+                    onClick={() => {
+                      changeColor(color);
+                      toggle();
+                    }}
+                    style={{ backgroundColor: color }}
+                  ></button>
+                );
+              })}
+            </div>
+          );
+        })}
+      </div>
+      <div className="fixed left-0 top-0 h-screen w-screen bg-black opacity-10" onClick={toggle}></div>
     </div>
   );
 };

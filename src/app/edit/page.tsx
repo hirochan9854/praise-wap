@@ -25,16 +25,21 @@ export default function Home() {
   const fontLarger = () => setFontSize(fontSize + 1);
 
   const [textColor, setTextColor] = useState('#000000');
-  const [bgColor, setBgColor] = useState('#ffffff');
-
   const changeTextColor = (color: string) => setTextColor(color);
+
+  const [bgColor, setBgColor] = useState('#ffffff');
   const changeBgColor = (color: string) => setBgColor(color);
 
   const [isTextColorPickerOpen, setIsTextColorPickerOpen] = useState(false);
-  const toggleTextColorPicker = () => setIsTextColorPickerOpen((prev) => !prev);
+  const toggleTextColorPicker = () => {
+    setIsTextColorPickerOpen((prev) => !prev);
+  };
+  console.log(isTextColorPickerOpen);
 
   const [isBgColorPickerOpen, setIsBgColorPickerOpen] = useState(false);
-  const toggleBgColorPicker = () => setIsBgColorPickerOpen((prev) => !prev);
+  const toggleBgColorPicker = () => {
+    setIsBgColorPickerOpen((prev) => !prev);
+  };
 
   const [fontFamily, setFontFamily] = useState('RocknRollOne');
   const changeFontFamily = (value: string) => setFontFamily(value);
@@ -96,7 +101,7 @@ export default function Home() {
                 <button onClick={fontLarger}>+</button>
               </div>
             </div>
-            <div className=" mt-10 flex ">
+            <div className=" mt-10 flex h-69px">
               <p className="mt-5 w-32 text-22px font-medium">文字色</p>
 
               {(isTextColorPickerOpen && (
@@ -104,17 +109,21 @@ export default function Home() {
               )) || (
                 <button
                   className="h-69px w-69px rounded-full shadow-box"
-                  onClick={() => toggleTextColorPicker()}
+                  onClick={() => {
+                    toggleTextColorPicker();
+                  }}
                   style={{ backgroundColor: textColor }}
                 ></button>
               )}
             </div>
-            <div className=" mt-10 flex ">
+            <div className=" mt-10 flex h-69px">
               <p className="mt-5 w-32  text-22px font-medium">背景色</p>
               {(isBgColorPickerOpen && <ColorPicker changeColor={changeBgColor} toggle={toggleBgColorPicker} />) || (
                 <button
                   className="h-69px w-69px rounded-full shadow-box"
-                  onClick={() => toggleBgColorPicker()}
+                  onClick={() => {
+                    toggleBgColorPicker();
+                  }}
                   style={{ backgroundColor: bgColor }}
                 ></button>
               )}
