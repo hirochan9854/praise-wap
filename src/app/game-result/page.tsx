@@ -1,10 +1,19 @@
 'use client';
 
 import { useSearchParams, useRouter } from 'next/navigation';
+import { Suspense } from 'react';
 
 import { Evaluation } from '@/components/Evaluation';
 
 export default function Home() {
+  return (
+    <Suspense>
+      <Result />
+    </Suspense>
+  );
+}
+
+const Result = () => {
   const router = useRouter();
   const searchParams = useSearchParams();
   const text = searchParams.get('text');
@@ -45,4 +54,4 @@ export default function Home() {
       </div>
     </div>
   );
-}
+};
