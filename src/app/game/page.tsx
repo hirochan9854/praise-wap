@@ -1,14 +1,13 @@
 'use client';
 
+import { useRouter } from 'next/navigation';
 import { useEffect, useRef, useState, useMemo } from 'react';
 
 import { Wordlist } from '@/components/WordList';
 
 export default function Home() {
-  // const router = useRouter();
-  // router.push(`/edit?text=${encodeURIComponent(maxScoreWordRef.current)}`);
-
-  const response = useMemo(() => ({ text: 'kolfkkkkkkkkllnk', score: 1000, magnitude: 0 }), []);
+  const router = useRouter();
+  const response = useMemo(() => ({ text: 'あなたくるよね。', score: 100, magnitude: 0 }), []);
 
   const [player1res, setPlayer1res] = useState({ text: '', score: 0, magnitude: 0 });
   const [player2res, setPlayer2res] = useState({ text: '', score: 0, magnitude: 0 });
@@ -34,9 +33,18 @@ export default function Home() {
       setPlayer2res(response);
       setCurrentTurn(1);
       currentTurnRef.current--;
+      if (currentTurnRef.current === 0) {
+        setInterval(() => {
+          handleNext();
+        }, 5000);
+      }
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [response]);
+
+  const handleNext = () => {
+    void router.push(`/game-result?text=${encodeURIComponent(maxScoreWordRef.current)}`);
+  };
 
   return (
     <div>

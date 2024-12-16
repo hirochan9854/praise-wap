@@ -15,7 +15,6 @@ function EditPageContent() {
   const [isClient, setIsClient] = useState(false);
   const router = useRouter();
 
-  // クライアントサイドでのみuseRouterを使えるようにする
   useEffect(() => {
     setIsClient(true);
   }, []);
@@ -34,7 +33,6 @@ function EditPageContent() {
   const toggleTextColorPicker = () => {
     setIsTextColorPickerOpen((prev) => !prev);
   };
-  console.log(isTextColorPickerOpen);
 
   const [isBgColorPickerOpen, setIsBgColorPickerOpen] = useState(false);
   const toggleBgColorPicker = () => {
@@ -78,7 +76,7 @@ function EditPageContent() {
 
       const url = await getDownloadURL(storageRef);
       if (isClient) {
-        router.push(`/result?imageUrl=${encodeURIComponent(url)}`);
+        router.push(`/edit-result?imageUrl=${encodeURIComponent(url)}`);
       }
     } catch (error) {
       setError('画像の生成に失敗しました');
@@ -175,7 +173,7 @@ function EditPageContent() {
       </div>
       <div>
         <div
-          className="flex h-621px w-286px items-center justify-center whitespace-pre-wrap shadow-box vertical"
+          className="flex h-621px w-286px items-center justify-center whitespace-pre-wrap px-3 py-6 shadow-box vertical"
           ref={nodeRef}
           style={{
             backgroundColor: bgColor,
@@ -203,7 +201,7 @@ function EditPageContent() {
         </div>
         <div className="mt-10">
           <button
-            className="mx-auto block w-56 rounded p-4  shadow-box  disabled:cursor-not-allowed disabled:opacity-50"
+            className=" mx-auto mt-9 block w-56 rounded p-4  shadow-box  disabled:cursor-not-allowed disabled:opacity-50"
             disabled={!htmlToImage || isLoading}
             onClick={() => {
               void handleClick();
