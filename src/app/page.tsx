@@ -17,7 +17,7 @@ export default function Home() {
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === ' ') {
-        router.push('/game');
+        router.push('/rule');
       }
     };
 
