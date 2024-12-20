@@ -7,12 +7,12 @@ import { Wordlist } from '@/components/WordList';
 
 export default function Home() {
   const router = useRouter();
-  const response = useMemo(() => ({ text: 'あなたくるよね。', score: 100, magnitude: 0 }), []);
+  const response = useMemo(() => ({ text: 'あなたいいよね。', score: 1000, magnitude: 0 }), []);
 
   const [player1res, setPlayer1res] = useState({ text: '', score: 0, magnitude: 0 });
   const [player2res, setPlayer2res] = useState({ text: '', score: 0, magnitude: 0 });
 
-  const currentTurnRef = useRef(5);
+  const currentTurnRef = useRef<number>(5);
 
   const [currentTurn, setCurrentTurn] = useState(1);
 
@@ -25,6 +25,9 @@ export default function Home() {
     }
   }, [response]);
 
+  const handleNext = () => {
+    void router.push(`/game-result?text=${encodeURIComponent(maxScoreWordRef.current)}`);
+  };
   useEffect(() => {
     if (currentTurn === 1) {
       setPlayer1res(response);
@@ -34,17 +37,13 @@ export default function Home() {
       setCurrentTurn(1);
       currentTurnRef.current--;
       if (currentTurnRef.current === 0) {
-        setInterval(() => {
+        setTimeout(() => {
           handleNext();
-        }, 5000);
+        }, 3000);
       }
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [response]);
-
-  const handleNext = () => {
-    void router.push(`/game-result?text=${encodeURIComponent(maxScoreWordRef.current)}`);
-  };
 
   return (
     <div>
