@@ -16,20 +16,26 @@ export default function Home() {
 const Result = () => {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const text = searchParams.get('text');
+  const text = searchParams.get('maxScoreWord');
+  const maxMagnitudePlayer = Number(searchParams.get('maxMagnitudePlayer'));
+  const maxScorePlayer = Number(searchParams.get('maxScorePlayer'));
+  const maxScore = Number(searchParams.get('maxScore'));
+  const higherTotal = Number(searchParams.get('higherTotal'));
+  const higherTotalScore = Number(searchParams.get('higherTotalScore'));
+
   return (
     <div className="mx-auto flex w-full justify-center gap-40 py-20">
       <div className="w-[622px]">
         <h2 className="text-3xl">ゲーム結果</h2>
         <div className="mt-20 flex flex-col gap-10">
           <div className="animate-slide-in-bck-right" style={{ animationDelay: '0.6s' }}>
-            <Evaluation acquirer={1} summary="感情の強さ" />
+            <Evaluation acquirer={maxMagnitudePlayer} summary="感情の強さ" />
           </div>
           <div className="animate-slide-in-bck-right" style={{ animationDelay: '1.2s' }}>
-            <Evaluation acquirer={2} num={12300} summary="最大スコア:" />
+            <Evaluation acquirer={maxScorePlayer} num={maxScore} summary="最高スコア:" />
           </div>
           <div className="animate-slide-in-bck-right" style={{ animationDelay: '1.8s' }}>
-            <Evaluation acquirer={1} num={456000} summary="合計スコア:" />
+            <Evaluation acquirer={higherTotal} num={higherTotalScore} summary="合計スコア:" />
           </div>
         </div>
         <p className="mt-24 animate-slide-in-elliptic-right-fwd text-5xl " style={{ animationDelay: '3s' }}>

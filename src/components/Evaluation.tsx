@@ -1,7 +1,7 @@
 import Image from 'next/image';
 
 export type EvaluationProps = {
-  acquirer: 1 | 2;
+  acquirer: number;
   summary: string;
   num?: number;
 };
