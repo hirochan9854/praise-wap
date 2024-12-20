@@ -5,13 +5,13 @@ import { useEffect, useMemo, useState } from 'react';
 
 import { Wordlist } from '@/components/WordList';
 
-interface GameResponse {
+type GameResponse = {
   text: string;
   score: number;
   magnitude: number;
-}
+};
 
-interface GameState {
+type GameState = {
   maxScore: {
     value: number;
     player: number;
@@ -27,12 +27,12 @@ interface GameState {
   };
   currentTurn: number;
   remainingTurns: number;
-}
+};
 
-interface PlayerState {
+type PlayerState = {
   response: GameResponse;
   total: number;
-}
+};
 
 const INITIAL_RESPONSE: GameResponse = { text: '', score: 0, magnitude: 0 };
 
