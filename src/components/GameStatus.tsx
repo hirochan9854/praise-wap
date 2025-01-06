@@ -19,6 +19,7 @@ export const GameStatus: React.FC<GameStatusProps> = ({ remainingTurns, currentT
 
   useEffect(() => {
     const processSentiment = async () => {
+      console.log('sentences:', sentences);
       if (!sentences[0] || sentences[0] === prevSentences.current) return;
 
       try {

@@ -1,7 +1,7 @@
 'use client';
 
 import { useSearchParams, useRouter } from 'next/navigation';
-import { Suspense } from 'react';
+import { Suspense, useEffect, useState } from 'react';
 
 import { Evaluation } from '@/components/Evaluation';
 
@@ -23,6 +23,20 @@ const Result = () => {
   const higherTotal = Number(searchParams.get('higherTotal'));
   const higherTotalScore = Number(searchParams.get('higherTotalScore'));
 
+  const [stars, setStars] = useState([0, 0]);
+
+  useEffect(() => {
+    let first = 0;
+    let second = 0;
+
+    [maxMagnitudePlayer, maxScorePlayer, higherTotal].forEach((winner) => {
+      if (winner === 1) first++;
+      if (winner === 2) second++;
+    });
+
+    setStars([first, second]);
+  }, [maxMagnitudePlayer, maxScorePlayer, higherTotal]);
+
   return (
     <div className="mx-auto flex w-full justify-center gap-40 py-20">
       <div className="w-[622px]">
@@ -39,7 +53,10 @@ const Result = () => {
           </div>
         </div>
         <p className="mt-24 animate-slide-in-elliptic-right-fwd text-5xl " style={{ animationDelay: '3s' }}>
-          {'プレイヤー２'}の勝ち！
+          {stars && stars[0] !== undefined && stars[1] !== undefined && stars[0] > stars[1]
+            ? 'プレイヤー1'
+            : 'プレイヤー2'}
+          の勝ち！
         </p>
         <button
           className=" mt-9 block w-56 animate-slide-in-bck-right rounded  p-4  shadow-box disabled:cursor-not-allowed disabled:opacity-50"
