@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React from 'react';
 import '@/polyfills';
 import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition';
 
@@ -10,7 +10,6 @@ interface TranscriptionProps {
 
 export const Transcription: React.FC<TranscriptionProps> = ({ onSentencesUpdate }) => {
   const { transcript, resetTranscript, listening } = useSpeechRecognition();
-  const [sentences, setSentences] = useState<string[]>([]);
 
   const startListening = () => {
     SpeechRecognition.startListening({ continuous: true });
@@ -28,7 +27,6 @@ export const Transcription: React.FC<TranscriptionProps> = ({ onSentencesUpdate 
         .filter((sentence) => sentence.trim().length > 0)
         .map((sentence) => sentence.trim() + (transcript.includes('です') ? 'です' : 'ます'));
 
-      setSentences((prevSentences) => [...prevSentences, ...newSentences]);
       onSentencesUpdate(newSentences);
 
       resetTranscript();
@@ -39,24 +37,34 @@ export const Transcription: React.FC<TranscriptionProps> = ({ onSentencesUpdate 
     handleTranscriptUpdate();
   }, [transcript, handleTranscriptUpdate]);
 
+  React.useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.code === 'Space') {
+        startListening();
+      }
+    };
+
+    const handleKeyUp = (event: KeyboardEvent) => {
+      if (event.code === 'Space') {
+        stopListening();
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    window.addEventListener('keyup', handleKeyUp);
+
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+      window.removeEventListener('keyup', handleKeyUp);
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   return (
     <div>
-      <p>{listening ? '音声認識on' : '音声認識off'}</p>
-      <button className="mr-2 rounded bg-blue-500 px-4 py-2 text-white" onClick={startListening}>
-        スタート
-      </button>
-
-      <button className="rounded bg-red-500 px-4 py-2 text-white" onClick={stopListening}>
-        ストップ
-      </button>
-
-      <div className="mt-4">
-        {sentences.map((sentence, index) => (
-          <p className="whitespace-pre-wrap" key={index}>
-            {sentence}
-          </p>
-        ))}
-      </div>
+      <p className="mt-16 h-9 w-64">{listening ? '聞き取り中' : 'スペースキーを押して話す'}</p>
+      <p className=" text-xs">やり直す場合は一度離す</p>
+      <div className="mt-4"></div>
     </div>
   );
 };

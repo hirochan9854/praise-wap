@@ -27,6 +27,7 @@ export default function Home() {
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
   return (
     <div className="flex h-screen flex-col items-center justify-center">
       {/* Transcriptionコンポーネントに文字列の更新を受け取るコールバックを渡す */}
