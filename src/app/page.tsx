@@ -35,7 +35,7 @@ export default function Home() {
       {/* SentimentAnalyzerに新しい文を渡して解析 */}
       {/* <SentimentAnalyzer sentence={newSentence} /> */}
 
-      <h1 className="text-7xl ">Prase Wap</h1>
+      <h1 className="text-7xl ">褒めて！！</h1>
       <p className="mt-20">スペースキーを押してスタート</p>
     </div>
   );
