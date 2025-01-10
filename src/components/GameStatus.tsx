@@ -13,21 +13,22 @@ interface GameStatusProps {
 }
 
 export const GameStatus: React.FC<GameStatusProps> = ({ remainingTurns, currentTurn, setResponse }) => {
-  const { analyzeSentiment, response } = useSentimentAnalyzer();
+  const { analyzeSentiment } = useSentimentAnalyzer(); // responseは直接使用しないので削除
   const [sentences, setSentences] = useState<string[]>([]);
   const prevSentences = useRef<string>('');
+  const prevResponse = useRef<GameResponse>({ text: '', score: 0, magnitude: 0 });
 
   useEffect(() => {
     const processSentiment = async () => {
-      console.log('sentences:', sentences);
       if (!sentences[0] || sentences[0] === prevSentences.current) return;
 
       try {
-        await analyzeSentiment(sentences[0]);
+        const sentimentResult = await analyzeSentiment(sentences[0]); // 結果を直接受け取る
         prevSentences.current = sentences[0];
-
-        if (response) {
-          setResponse(response);
+        if (sentimentResult !== null && sentimentResult.text !== prevResponse.current.text) {
+          prevResponse.current = sentimentResult;
+          setResponse(sentimentResult); // 解析結果を直接使用
+          return;
         }
       } catch (error) {
         console.error('Error analyzing sentiment:', error);
@@ -35,7 +36,7 @@ export const GameStatus: React.FC<GameStatusProps> = ({ remainingTurns, currentT
     };
 
     void processSentiment();
-  }, [sentences, analyzeSentiment, response, setResponse]);
+  }, [sentences, analyzeSentiment, setResponse]); // responseを依存配列から削除
 
   return (
     <div className="text-center">
