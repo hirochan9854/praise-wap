@@ -65,7 +65,9 @@ export const useSentimentAnalyzer = () => {
 
       const gameResponse: GameResponse = {
         text: text,
-        score: data.documentSentiment.score * 10000 * data.documentSentiment.magnitude,
+        score: Math.round(
+          data.documentSentiment.score * 10000 * data.documentSentiment.magnitude + (Math.random() * 2 - 1) * 1000,
+        ),
         magnitude: data.documentSentiment.magnitude,
       };
 

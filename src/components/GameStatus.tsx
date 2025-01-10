@@ -10,9 +10,15 @@ interface GameStatusProps {
   remainingTurns: number;
   currentTurn: number;
   setResponse: React.Dispatch<React.SetStateAction<GameResponse>>;
+  setIsAnalysisInProgress: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-export const GameStatus: React.FC<GameStatusProps> = ({ remainingTurns, currentTurn, setResponse }) => {
+export const GameStatus: React.FC<GameStatusProps> = ({
+  remainingTurns,
+  currentTurn,
+  setResponse,
+  setIsAnalysisInProgress,
+}) => {
   const { analyzeSentiment } = useSentimentAnalyzer(); // responseは直接使用しないので削除
   const [sentences, setSentences] = useState<string[]>([]);
   const prevSentences = useRef<string>('');
@@ -23,10 +29,12 @@ export const GameStatus: React.FC<GameStatusProps> = ({ remainingTurns, currentT
       if (!sentences[0] || sentences[0] === prevSentences.current) return;
 
       try {
+        setIsAnalysisInProgress(true);
         const sentimentResult = await analyzeSentiment(sentences[0]); // 結果を直接受け取る
         prevSentences.current = sentences[0];
         if (sentimentResult !== null && sentimentResult.text !== prevResponse.current.text) {
           prevResponse.current = sentimentResult;
+          setIsAnalysisInProgress(false);
           setResponse(sentimentResult); // 解析結果を直接使用
           return;
         }
@@ -36,7 +44,8 @@ export const GameStatus: React.FC<GameStatusProps> = ({ remainingTurns, currentT
     };
 
     void processSentiment();
-  }, [sentences, analyzeSentiment, setResponse]); // responseを依存配列から削除
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [sentences]);
 
   return (
     <div className="text-center">

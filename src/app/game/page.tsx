@@ -15,15 +15,33 @@ export default function Game() {
   const [response, setResponse] = useState<GameResponse>(INITIAL_RESPONSE);
   const { gameState, isGameFinished } = useGameState(response);
   const { players, currentTurn, remainingTurns } = gameState;
+  const [isAnalysisInProgress, setIsAnalysisInProgress] = useState(false);
+  const isPlayer1Analysis = currentTurn === 1 && isAnalysisInProgress;
+  const isPlayer2Analysis = currentTurn === 2 && isAnalysisInProgress;
 
   return (
     <div>
       <div className="mx-auto flex max-w-[1200px] justify-center gap-32 pt-16">
-        <Wordlist name="プレイヤー1" response={players[1].response} second={false} />
-        <GameStatus currentTurn={currentTurn} remainingTurns={remainingTurns} setResponse={setResponse} />
-        <Wordlist name="プレイヤー2" response={players[2].response} second={true} />
+        <Wordlist
+          isAnalysisInProgress={isPlayer1Analysis}
+          name="プレイヤー1"
+          response={players[1].response}
+          second={false}
+        />
+        <GameStatus
+          currentTurn={currentTurn}
+          remainingTurns={remainingTurns}
+          setIsAnalysisInProgress={setIsAnalysisInProgress}
+          setResponse={setResponse}
+        />
+        <Wordlist
+          isAnalysisInProgress={isPlayer2Analysis}
+          name="プレイヤー2"
+          response={players[2].response}
+          second={true}
+        />
       </div>
-      {isGameFinished && <GameFinishOverlay />}
+      {isGameFinished && !isAnalysisInProgress && <GameFinishOverlay />}
     </div>
   );
 }

@@ -12,9 +12,10 @@ export type WordlistProps = {
     score: number;
     magnitude: number;
   };
+  isAnalysisInProgress: boolean;
 };
 
-export const Wordlist: React.FC<WordlistProps> = ({ second, name, response }) => {
+export const Wordlist: React.FC<WordlistProps> = ({ second, name, response, isAnalysisInProgress }) => {
   const [score, setScore] = useState<number>(0);
   const [wordList] = useState<string[]>([]);
 
@@ -47,6 +48,7 @@ export const Wordlist: React.FC<WordlistProps> = ({ second, name, response }) =>
         {wordList.map((serif, key) => {
           return <Word key={key} second={second} serif={serif} />;
         })}
+        {isAnalysisInProgress && <p className="mb-14 text-2xl">解析中...</p>}
       </div>
     </div>
   );
