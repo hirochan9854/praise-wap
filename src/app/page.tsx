@@ -4,14 +4,6 @@ import { useRouter } from 'next/navigation';
 import React, { useEffect } from 'react';
 
 export default function Home() {
-  // const [newSentence, setNewSentence] = useState<string>('');
-  // const handleSentencesUpdate = (sentences: string[]) => {
-  //   console.log('sentences:', sentences);
-  //   if (sentences[sentences.length - 1]) {
-  //     setNewSentence(sentences[sentences.length - 1] || ''); // 配列の最後の文を取得して保存
-  //   }
-  // };
-
   const router = useRouter();
 
   useEffect(() => {
@@ -30,11 +22,6 @@ export default function Home() {
 
   return (
     <div className="flex h-screen flex-col items-center justify-center">
-      {/* Transcriptionコンポーネントに文字列の更新を受け取るコールバックを渡す */}
-      {/* <Transcription onSentencesUpdate={handleSentencesUpdate} /> */}
-      {/* SentimentAnalyzerに新しい文を渡して解析 */}
-      {/* <SentimentAnalyzer sentence={newSentence} /> */}
-
       <h1 className="text-7xl ">褒めて！！</h1>
       <p className="mt-20">スペースキーを押してスタート</p>
     </div>
