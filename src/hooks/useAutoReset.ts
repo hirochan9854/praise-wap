@@ -14,7 +14,6 @@ export const useAutoReset = () => {
 
     const setTimer = () => {
       timeOutId = setTimeout(reset, sec * 1000);
-      console.log(timeOutId);
     };
 
     const resetTimer = () => {
