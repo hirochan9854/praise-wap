@@ -5,6 +5,8 @@ import { Suspense, useEffect, useState } from 'react';
 
 import { Evaluation } from '@/components/Evaluation';
 
+import { useAutoReset } from '@/hooks/useAutoReset';
+
 export default function Home() {
   return (
     <Suspense>
@@ -37,6 +39,7 @@ const Result = () => {
     setStars([first, second]);
   }, [maxMagnitudePlayer, maxScorePlayer, higherTotal]);
 
+  useAutoReset();
   return (
     <div className="mx-auto flex w-full justify-center gap-40 py-20">
       <div className="w-[622px]">

@@ -6,6 +6,8 @@ import { useSearchParams } from 'next/navigation';
 import { Suspense } from 'react';
 import QRCode from 'react-qr-code';
 
+import { useAutoReset } from '@/hooks/useAutoReset';
+
 const ResultContent = () => {
   const searchParams = useSearchParams();
   const imageUrl = searchParams.get('imageUrl');
@@ -49,6 +51,7 @@ const ResultContent = () => {
 };
 
 const Result = () => {
+  useAutoReset();
   return (
     <Suspense fallback={<p>Loading...</p>}>
       <ResultContent />

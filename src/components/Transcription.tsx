@@ -62,7 +62,7 @@ export const Transcription: React.FC<TranscriptionProps> = ({ onSentencesUpdate 
 
   return (
     <div>
-      <p className="mt-16 h-9 w-64">{listening ? '聞き取り中' : 'スペースキーを押して話す'}</p>
+      <p className="mx-auto mt-16 h-9 w-64">{listening ? '聞き取り中' : 'スペースキーを押して話す'}</p>
       <p className=" text-xs">やり直す場合は一度離す</p>
       <div className="mt-4"></div>
     </div>

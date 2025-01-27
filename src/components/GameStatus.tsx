@@ -53,8 +53,10 @@ export const GameStatus: React.FC<GameStatusProps> = ({
       <p className="mt-4 text-4xl">{remainingTurns}/5</p>
       <p className="mt-8">{`プレイヤー${currentTurn}のターン`}</p>
       <p className="mt-10 text-sm text-[#fa5857]">
-        必ず語尾に「です」か「ます」 <br />
-        をつけてください
+        必ず語尾に「です」か「ます」 をつけてください
+        <br />
+        <br />
+        一定時間操作がないとタイトルに自動的にタイトルに戻ります
       </p>
       <Transcription onSentencesUpdate={setSentences} />
     </div>

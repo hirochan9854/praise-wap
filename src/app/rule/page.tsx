@@ -3,6 +3,8 @@
 import { useRouter } from 'next/navigation';
 import React, { useEffect } from 'react';
 
+import { useAutoReset } from '@/hooks/useAutoReset';
+
 export default function GameRules() {
   const router = useRouter();
 
@@ -19,6 +21,7 @@ export default function GameRules() {
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+  useAutoReset();
   return (
     <div className="mx-auto max-w-2xl p-36">
       <div>

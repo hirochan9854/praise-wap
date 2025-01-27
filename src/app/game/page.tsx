@@ -6,6 +6,7 @@ import { GameFinishOverlay } from '@/components/GameFinishOverlay';
 import { GameStatus } from '@/components/GameStatus';
 import { Wordlist } from '@/components/WordList';
 
+import { useAutoReset } from '@/hooks/useAutoReset';
 import { useGameState } from '@/hooks/useGameState';
 import { GameResponse } from '@/types';
 
@@ -19,6 +20,7 @@ export default function Game() {
   const isPlayer1Analysis = currentTurn === 1 && isAnalysisInProgress;
   const isPlayer2Analysis = currentTurn === 2 && isAnalysisInProgress;
 
+  useAutoReset();
   return (
     <div>
       <div className="mx-auto flex max-w-[1200px] justify-center gap-32 pt-16">

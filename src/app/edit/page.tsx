@@ -6,6 +6,7 @@ import { Suspense, useEffect, useRef, useState } from 'react';
 
 import { ColorPicker } from '@/components/ColorPicker';
 
+import { useAutoReset } from '@/hooks/useAutoReset';
 import { storage } from '@/lib/firebase';
 
 import { generateImage, saveImageToFirebase } from './imageUtils';
@@ -85,6 +86,8 @@ function EditPageContent() {
       setIsLoading(false);
     }
   };
+
+  useAutoReset();
   return (
     <div className="mx-auto flex w-full justify-center gap-40 py-20">
       <div className="w-[622px]">
