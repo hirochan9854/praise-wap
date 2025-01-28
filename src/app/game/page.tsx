@@ -1,5 +1,6 @@
 'use client';
 
+import Link from 'next/link';
 import { useState } from 'react';
 
 import { GameFinishOverlay } from '@/components/GameFinishOverlay';
@@ -23,7 +24,10 @@ export default function Game() {
   useAutoReset();
   return (
     <div>
-      <div className="mx-auto flex max-w-[1200px] justify-center gap-32 pt-16">
+      <Link className="fixed left-2 top-2 text-xs text-[#fa5857]" href={'/'}>
+        タイトルに戻る
+      </Link>
+      <div className="mx-auto flex max-w-[1200px] justify-center gap-32 pt-16 ">
         <Wordlist
           isAnalysisInProgress={isPlayer1Analysis}
           name="プレイヤー1"
