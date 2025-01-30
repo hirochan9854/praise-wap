@@ -1,6 +1,7 @@
 'use client';
 
 import { getDownloadURL, ref } from 'firebase/storage';
+import Link from 'next/link';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { Suspense, useEffect, useRef, useState } from 'react';
 
@@ -90,6 +91,9 @@ function EditPageContent() {
   useAutoReset();
   return (
     <div className="mx-auto flex w-full justify-center gap-40 py-20">
+      <Link className="fixed left-2 top-2 text-xs text-[#fa5857]" href={'/'}>
+        ←タイトルに戻る
+      </Link>
       <div className="w-[622px]">
         <h2 className="text-3xl">セリフを編集</h2>
         <div className="mt-20 font-ZenKakuGothic">

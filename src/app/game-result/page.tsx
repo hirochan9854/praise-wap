@@ -1,5 +1,6 @@
 'use client';
 
+import Link from 'next/link';
 import { useSearchParams, useRouter } from 'next/navigation';
 import { Suspense, useEffect, useState } from 'react';
 
@@ -42,6 +43,9 @@ const Result = () => {
   useAutoReset();
   return (
     <div className="mx-auto flex w-full justify-center gap-40 py-20">
+      <Link className="fixed left-2 top-2 text-xs text-[#fa5857]" href={'/'}>
+        ←タイトルに戻る
+      </Link>
       <div className="w-[622px]">
         <h2 className="text-3xl">ゲーム結果</h2>
         <div className="mt-20 flex flex-col gap-10">

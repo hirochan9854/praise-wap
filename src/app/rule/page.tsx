@@ -1,5 +1,6 @@
 'use client';
 
+import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import React, { useEffect } from 'react';
 
@@ -23,14 +24,17 @@ export default function GameRules() {
   }, []);
   useAutoReset();
   return (
-    <div className="mx-auto max-w-2xl p-36">
+    <div className="mx-auto max-w-3xl p-36">
+      <Link className="fixed left-2 top-2 text-xs text-[#fa5857]" href={'/'}>
+        ←タイトルに戻る
+      </Link>
       <div>
         <div className="mb-5 text-center text-2xl font-bold">遊び方</div>
       </div>
       <div className="space-y-6">
         <div className="space-y-4">
           <div className="border-l-4 border-red-500 pl-4">
-            <h2 className="mb-2 text-lg font-semibold">基本ルール</h2>
+            <h2 className="mb-2 text-lg font-semibold">ルール</h2>
             <ul className="space-y-2">
               <li className="flex items-center gap-2">
                 <span className="text-red-500">●</span>
@@ -42,11 +46,13 @@ export default function GameRules() {
               </li>
               <li className="flex items-center gap-2">
                 <span className="text-red-500">●</span>
-                語尾は「です」か「ます」を使用
+                必ず語尾は「です」か「ます」 で終わってください
+                <br />
+                例）「◯◯さんは素敵です」、「◯◯くんはかっこいいです」
               </li>
               <li className="flex items-center gap-2">
                 <span className="text-red-500">●</span>
-                マイクを使用します
+                MacBookに向かって話しかけてください
               </li>
             </ul>
           </div>

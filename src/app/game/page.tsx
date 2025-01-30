@@ -29,6 +29,7 @@ export default function Game() {
       </Link>
       <div className="mx-auto flex max-w-[1200px] justify-center gap-32 pt-16 ">
         <Wordlist
+          currentTurn={currentTurn === 1}
           isAnalysisInProgress={isPlayer1Analysis}
           name="プレイヤー1"
           response={players[1].response}
@@ -41,6 +42,7 @@ export default function Game() {
           setResponse={setResponse}
         />
         <Wordlist
+          currentTurn={currentTurn === 2}
           isAnalysisInProgress={isPlayer2Analysis}
           name="プレイヤー2"
           response={players[2].response}
