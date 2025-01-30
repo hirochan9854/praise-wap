@@ -25,7 +25,7 @@ export default function Game() {
   return (
     <div>
       <Link className="fixed left-2 top-2 text-xs text-[#fa5857]" href={'/'}>
-        タイトルに戻る
+        ←タイトルに戻る
       </Link>
       <div className="mx-auto flex max-w-[1200px] justify-center gap-32 pt-16 ">
         <Wordlist

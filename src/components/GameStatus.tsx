@@ -48,8 +48,8 @@ export const GameStatus: React.FC<GameStatusProps> = ({
   }, [sentences]);
 
   return (
-    <div className="text-center">
-      <p className="text-5xl">TURN</p>
+    <div className="w-64 text-center">
+      <p className=" text-5xl">TURN</p>
       <p className="mt-4 text-4xl">{remainingTurns}/5</p>
       <p className="mt-8">{`プレイヤー${currentTurn}のターン`}</p>
       <p className="mt-10 text-sm text-[#fa5857]">

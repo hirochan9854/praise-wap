@@ -42,7 +42,7 @@ export const Wordlist: React.FC<WordlistProps> = ({ second, name, response, isAn
   }, [response, wordList]);
 
   return (
-    <div className="mt-6 text-center">
+    <div className="mt-6 w-[345px] text-center">
       <p className="text-2xl">{name}</p>
       <p className="mt-14">score</p>
       <p className="mx-auto mb-20  w-64 text-[64px]">{score}</p>
