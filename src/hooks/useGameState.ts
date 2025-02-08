@@ -13,7 +13,7 @@ const INITIAL_GAME_STATE: GameState = {
     2: { response: INITIAL_RESPONSE, total: 0 },
   },
   currentTurn: 2,
-  remainingTurns: 6,
+  remainingTurns: 4,
 };
 
 export const useGameState = (response: GameResponse) => {

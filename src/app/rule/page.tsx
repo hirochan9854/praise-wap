@@ -39,6 +39,8 @@ export default function GameRules() {
               <li className="flex items-center gap-2">
                 <span className="text-red-500">●</span>
                 ターン制（5ターン）
+                <br />
+                ※展示のため3ターン
               </li>
               <li className="flex items-center gap-2">
                 <span className="text-red-500">●</span>

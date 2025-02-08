@@ -50,7 +50,7 @@ export const GameStatus: React.FC<GameStatusProps> = ({
   return (
     <div className=" text-center">
       <p className=" text-5xl">TURN</p>
-      <p className="mt-4 text-4xl">{remainingTurns}/5</p>
+      <p className="mt-4 text-4xl">{remainingTurns}/3</p>
       <p className="mt-8">{`プレイヤー${currentTurn}のターン`}</p>
       <p className="mt-10 whitespace-nowrap text-sm text-[#fa5857]">必ず語尾は「です」か「ます」 で終わってください</p>
       <Transcription onSentencesUpdate={setSentences} />
